@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Municipalidad Distrital de Motupe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/carrusel.css">
+</head>
+
+<body>
+<!-- Encabezado principal con identidad municipal -->
+<header class="header">
+    <div class="logo">
+        <h1>MUNICIPALIDAD DISTRITAL DE MOTUPE</h1>
+        <span>Gobierno local al servicio del ciudadano</span>
+    </div>
+    <div class="sprl">
+        <h3>TRAMITES Y SERVICIOS EN LINEA</h3>
+    </div>
+</header>
+
+<!-- Navegacion principal -->
+<nav class="menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#tramites">Tramites</a>
+    <a href="#servicios">Servicios</a>
+    <div class="menu-dropdown">
+        <button type="button" class="menu-trigger">Otros</button>
+        <div class="menu-panel">
+            <a href="#consulta">Consulta</a>
+            <a href="#tarifas">Tarifas</a>
+            <a href="#solicitud">Mi solicitud</a>
+            <a href="#formulario">Registrar tramite</a>
+            <a href="#seguimiento">Ver estado</a>
+            <a href="#tasas">Calcular pago</a>
+            <a href="#citas">Reservar cita</a>
+            <a href="#contacto">Contactenos</a>
+            <a href="#ayuda">Ayuda</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenido principal -->
+<main>
+    <!-- Seccion inicio: carrusel e introduccion -->
+    <section class="hero" id="inicio">
+        <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="imagen/muni_motupe1.jpg" class="d-block w-100" alt="Municipalidad de Motupe">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="imagen/muni_motupe.jpg" class="d-block w-100" alt="Servicios municipales">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagen/muni_motupe2.jpg" class="d-block w-100" alt="Atencion al ciudadano">
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <div class="hero-overlay">
+            <div class="hero-panel">
+                <p class="hero-kicker">Portal ciudadano</p>
+                <h2>Informacion clara para tramites y servicios municipales</h2>
+                <p>Consulta requisitos, plazos y costos sin hacer colas. Todo en un solo lugar.</p>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="#tramites">Ver tramites</a>
+                    <a class="btn-outline" href="#servicios">Ver servicios</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion consulta: formulario y resumen -->
+    <section class="consulta" id="consulta">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Consulta rapida</h2>
+                <p>Ingresa tu DNI y elige el tramite o servicio para ver un resumen.</p>
+                <form id="consulta-form" class="consulta-form" autocomplete="off">
+                    <label for="dni-input">DNI</label>
+                    <input id="dni-input" type="text" maxlength="8" placeholder="8 digitos">
+
+                    <label for="tramite-select">Tramite o servicio</label>
+                    <select id="tramite-select">
+                        <option value="">Seleccione una opcion</option>
+                    </select>
+
+                    <label class="checkline">
+                        <input type="checkbox" id="urgente-check">
+                        Atencion urgente (+S/ 20.00)
+                    </label>
+
+                    <button type="button" id="btn-consultar" class="btn-primary">Consultar</button>
+                </form>
+
+                <div id="detalle-seleccion" class="detalle">Seleccione un tramite o servicio.</div>
+                <div id="resultado-consulta" class="resultado" aria-live="polite"></div>
+            </div>
+
+            <div class="panel panel-info">
+                <h3>Informacion al ciudadano</h3>
+                <ul class="lista-info">
+                    <li>Horario: Lunes a viernes de 08:00 a 16:00</li>
+                    <li>Central: (074) 000-000</li>
+                    <li>Correo: informes@munimotupe.gob.pe</li>
+                    <li>Direccion: Plaza de Armas s/n, Motupe</li>
+                </ul>
+                <div id="stats-container" class="stats"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion tramites: listado con buscador -->
+    <section class="catalogo" id="tramites">
+        <div class="container">
+            <div class="section-head">
+                <p class="kicker">Tramites municipales</p>
+                <h2>Tramites municipales</h2>
+                <p>Revisa requisitos, plazos y costos. Si tienes dudas, usa la consulta rapida.</p>
+            </div>
+
+            <div class="buscador">
+                <label for="busqueda">Buscar tramite o servicio</label>
+                <input id="busqueda" type="text" placeholder="Ej: licencia, predio, partida">
+            </div>
+
+            <div id="tramites-container" class="cards-grid"></div>
+        </div>
+    </section>
+
+    <!-- Seccion servicios: listado de servicios -->
+    <section class="catalogo catalogo-servicios" id="servicios">
+        <div class="container">
+            <div class="section-head">
+                <p class="kicker">Servicios municipales</p>
+                <h2>Servicios municipales</h2>
+                <p>Servicios esenciales para el bienestar y la atencion del ciudadano.</p>
+            </div>
+            <div id="servicios-container" class="cards-grid"></div>
+        </div>
+    </section>
+
+    <!-- Seccion tarifas: costos referenciales -->
+    <section class="tarifas" id="tarifas">
+        <div class="container">
+            <div class="section-head">
+                <p class="kicker">Tarifas referenciales</p>
+                <h2>Tarifas y pagos</h2>
+                <p>Valores aproximados segun el TUPA vigente.</p>
+            </div>
+            <div id="tarifas-container" class="tarifas-grid"></div>
+        </div>
+    </section>
+
+    <!-- Seccion solicitud: generador de solicitud -->
+    <section class="solicitud" id="solicitud">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Mi solicitud</h2>
+                <p>Completa el formulario para crear tu solicitud municipal.</p>
+                <form id="solicitud-form" class="form-area" autocomplete="off">
+                    <label for="sol-nombre">Nombre completo</label>
+                    <input id="sol-nombre" type="text" placeholder="Nombres y apellidos">
+
+                    <label for="sol-dni">DNI</label>
+                    <input id="sol-dni" type="text" maxlength="8" placeholder="8 digitos">
+
+                    <label for="sol-asunto">Asunto</label>
+                    <input id="sol-asunto" type="text" placeholder="Ej: licencia de funcionamiento">
+
+                    <label for="sol-detalle">Detalle del pedido</label>
+                    <textarea id="sol-detalle" rows="4" placeholder="Describe tu solicitud"></textarea>
+
+                    <label class="checkline">
+                        <input type="checkbox" id="sol-normalizar">
+                        Normalizar palabras comunes
+                    </label>
+
+                    <label for="sol-buscar">Buscar palabra</label>
+                    <input id="sol-buscar" type="text" placeholder="Ej: licencia">
+
+                    <div class="form-inline">
+                        <div>
+                            <label for="sol-reemplazar">Reemplazar</label>
+                            <input id="sol-reemplazar" type="text" placeholder="palabra">
+                        </div>
+                        <div>
+                            <label for="sol-por">Por</label>
+                            <input id="sol-por" type="text" placeholder="nueva palabra">
+                        </div>
+                    </div>
+
+                    <label for="sol-resumen">Resumen (caracteres)</label>
+                    <input id="sol-resumen" type="number" min="20" max="300" value="120">
+
+                    <button type="button" id="btn-solicitud" class="btn-primary">Generar solicitud</button>
+                </form>
+            </div>
+            <div class="panel panel-info">
+                <h3>Salida de la solicitud</h3>
+                <pre id="solicitud-salida" class="output-box">Completa el formulario y presiona Generar solicitud.</pre>
+                <div id="solicitud-analisis" class="result-box"></div>
+                <div id="solicitud-uri" class="result-box"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion formulario: registro con validacion -->
+    <section class="formulario" id="formulario">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Registrar tramite</h2>
+                <p>Registra tu solicitud con validacion basica.</p>
+                <form id="formulario-tramite" class="form-area" autocomplete="off">
+                    <label for="for-nombre">Nombre completo</label>
+                    <input id="for-nombre" type="text" placeholder="Nombres y apellidos">
+
+                    <label for="for-dni">DNI</label>
+                    <input id="for-dni" type="text" maxlength="8" placeholder="8 digitos">
+
+                    <label for="for-correo">Correo</label>
+                    <input id="for-correo" type="email" placeholder="correo@ejemplo.com">
+
+                    <label for="for-telefono">Telefono</label>
+                    <input id="for-telefono" type="text" maxlength="9" placeholder="9 digitos">
+
+                    <label for="for-direccion">Direccion</label>
+                    <input id="for-direccion" type="text" placeholder="Direccion completa">
+
+                    <label for="for-tramite">Tramite</label>
+                    <select id="for-tramite">
+                        <option value="">Seleccione una opcion</option>
+                    </select>
+
+                    <label class="checkline">
+                        <input type="checkbox" id="for-acepto">
+                        Declaro que la informacion es correcta
+                    </label>
+
+                    <button type="button" id="btn-formulario" class="btn-primary">Registrar solicitud</button>
+                </form>
+                <div id="formulario-errores" class="result-box"></div>
+            </div>
+            <div class="panel panel-info">
+                <h3>Resumen del registro</h3>
+                <pre id="formulario-resumen" class="output-box">Completa el formulario para ver el resumen.</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion seguimiento: estado de expediente -->
+    <section class="seguimiento" id="seguimiento">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Ver estado del tramite</h2>
+                <p>Ingresa codigo y DNI para conocer el estado del expediente.</p>
+                <div class="form-area">
+                    <label for="seg-codigo">Codigo de expediente</label>
+                    <input id="seg-codigo" type="text" placeholder="MT-1201">
+
+                    <label for="seg-dni">DNI</label>
+                    <input id="seg-dni" type="text" maxlength="8" placeholder="8 digitos">
+
+                    <button type="button" id="btn-seguimiento" class="btn-primary">Buscar tramite</button>
+                </div>
+                <div id="seguimiento-resultado" class="result-box"></div>
+            </div>
+            <div class="panel panel-info">
+                <h3>Ultimos expedientes</h3>
+                <div id="seguimiento-lista" class="pill-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion tasas: calculadora de costos -->
+    <section class="tasas" id="tasas">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Calcular pago</h2>
+                <p>Calcula el costo total segun el tramite y opciones elegidas.</p>
+                <form id="tasas-form" class="form-area" autocomplete="off">
+                    <label for="tasas-select">Tramite o servicio</label>
+                    <select id="tasas-select">
+                        <option value="">Seleccione una opcion</option>
+                    </select>
+
+                    <label for="tasas-copias">Numero de copias</label>
+                    <input id="tasas-copias" type="number" min="1" max="10" value="1">
+
+                    <label for="tasas-meses">Meses de fraccionamiento</label>
+                    <input id="tasas-meses" type="number" min="0" max="6" value="0">
+
+                    <label class="checkline">
+                        <input type="checkbox" id="tasas-urgente">
+                        Atencion urgente (15%)
+                    </label>
+
+                    <label class="checkline">
+                        <input type="checkbox" id="tasas-adulto">
+                        Descuento adulto mayor (10%)
+                    </label>
+
+                    <button type="button" id="btn-tasas" class="btn-primary">Calcular</button>
+                </form>
+                <div id="tasas-resultado" class="result-box"></div>
+                <div id="tasas-nota" class="note"></div>
+            </div>
+            <div class="panel panel-info">
+                <h3>Detalle del calculo</h3>
+                <pre id="tasas-detalle" class="output-box"></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion citas: agenda de atencion -->
+    <section class="citas" id="citas">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Reservar cita</h2>
+                <p>Reserva una cita para atencion presencial.</p>
+                <form id="citas-form" class="form-area" autocomplete="off">
+                    <label for="cita-nombre">Nombre completo</label>
+                    <input id="cita-nombre" type="text" placeholder="Nombres y apellidos">
+
+                    <label for="cita-dni">DNI</label>
+                    <input id="cita-dni" type="text" maxlength="8" placeholder="8 digitos">
+
+                    <label for="cita-dia">Dia</label>
+                    <select id="cita-dia"></select>
+
+                    <label for="cita-hora">Hora</label>
+                    <select id="cita-hora"></select>
+
+                    <button type="button" id="btn-cita" class="btn-primary">Reservar cita</button>
+                </form>
+                <div id="citas-resultado" class="result-box"></div>
+                <div id="citas-cupos" class="note"></div>
+            </div>
+            <div class="panel panel-info">
+                <h3>Horarios disponibles</h3>
+                <div id="citas-horarios" class="agenda-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion contacto: canales y sedes -->
+    <section class="contacto" id="contacto">
+        <div class="container grid-two">
+            <div class="panel">
+                <h2>Contactenos</h2>
+                <p>Canales oficiales para consultas y seguimiento.</p>
+                <ul class="lista-info">
+                    <li>Atencion presencial en mesa de partes</li>
+                    <li>Linea municipal: (074) 000-001</li>
+                    <li>WhatsApp institucional: 999 888 777</li>
+                    <li>Horario extendido: Sabados 09:00 - 12:00</li>
+                </ul>
+            </div>
+            <div class="panel panel-info">
+                <h3>Oficinas y sedes</h3>
+                <ul class="lista-info">
+                    <li>Sede central: Plaza de Armas s/n</li>
+                    <li>Oficina de catastro: Jr. Las Flores 120</li>
+                    <li>Registro civil: Av. Libertad 250</li>
+                    <li>Atencion virtual: www.munimotupe.gob.pe</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion ayuda: preguntas frecuentes -->
+    <section class="ayuda" id="ayuda">
+        <div class="container">
+            <div class="section-head">
+                <p class="kicker">Ayuda rapida</p>
+                <h2>Preguntas frecuentes</h2>
+                <p>Resuelve dudas comunes antes de iniciar tu tramite.</p>
+            </div>
+            <div class="ayuda-grid">
+                <div class="ayuda-card">
+                    <h4>Como hago seguimiento</h4>
+                    <p>Con tu DNI puedes consultar el estado en linea o en mesa de partes.</p>
+                </div>
+                <div class="ayuda-card">
+                    <h4>Que documentos llevo</h4>
+                    <p>Revisa los requisitos en cada tramite antes de asistir.</p>
+                </div>
+                <div class="ayuda-card">
+                    <h4>Como pago</h4>
+                    <p>Puedes pagar en caja municipal o a traves de agentes autorizados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Pie de pagina -->
+<footer class="footer">
+    <p>(c) 2026 Municipalidad Distrital de Motupe - Todos los derechos reservados</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/javaScrip.js"></script>
+</body>
+</html>

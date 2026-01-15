@@ -1,0 +1,708 @@
+/* Variables base de color y espaciado */
+:root {
+    --green-900: #0b3b22;
+    --green-700: #0f5a32;
+    --green-600: #1c6f3f;
+    --green-200: #e4efe6;
+    --sand-100: #f7f2e6;
+    --ink: #1e2a24;
+    --accent: #e5c15a;
+    --white: #ffffff;
+    --shadow: 0 16px 40px rgba(12, 30, 20, 0.12);
+    --nav-offset: 96px;
+}
+
+/* Reset basico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globales */
+body {
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background-color: #f4f7f2;
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(28, 111, 63, 0.15), transparent 45%),
+        radial-gradient(circle at 85% 10%, rgba(229, 193, 90, 0.2), transparent 48%);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Contenedor central */
+.container {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+}
+
+/* Encabezado principal */
+.header {
+    background: linear-gradient(120deg, var(--green-900), var(--green-700));
+    color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo h1 {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.sprl h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--accent);
+    color: var(--green-900);
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: right;
+}
+
+/* Barra de navegacion */
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--green-700);
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 18px;
+    flex-wrap: wrap;
+}
+
+.menu a,
+.menu button {
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.menu a:hover,
+.menu button:hover,
+.menu a:focus-visible,
+.menu button:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+.menu-dropdown {
+    position: relative;
+}
+
+.menu-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-panel a {
+    color: var(--ink);
+    background: transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.menu-panel a:hover,
+.menu-panel a:focus-visible {
+    background: var(--green-200);
+    transform: none;
+}
+
+.menu-dropdown:hover .menu-panel,
+.menu-dropdown:focus-within .menu-panel {
+    display: flex;
+}
+
+/* Hero con carrusel y panel de mensaje */
+.hero {
+    position: relative;
+    padding: 0;
+}
+
+.hero img {
+    height: calc(100vh - var(--nav-offset));
+    min-height: 420px;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+    pointer-events: none;
+}
+
+.hero-panel {
+    background: rgba(255, 255, 255, 0.94);
+    padding: 24px 28px;
+    max-width: 440px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    pointer-events: auto;
+}
+
+.hero-panel h2 {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.hero-kicker {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--green-600);
+    margin-bottom: 8px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+/* Botones de accion */
+.btn-primary,
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--green-900);
+    box-shadow: 0 8px 20px rgba(229, 193, 90, 0.4);
+}
+
+.btn-outline {
+    border-color: var(--green-700);
+    color: var(--green-700);
+    background: transparent;
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+    transform: translateY(-2px);
+}
+
+/* Secciones con alto completo para el navbar */
+section {
+    padding: 70px 0;
+    scroll-margin-top: var(--nav-offset);
+    min-height: calc(100vh - var(--nav-offset));
+}
+
+/* Seccion consulta rapida */
+.consulta {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Layout en dos columnas */
+.grid-two {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+/* Paneles de informacion */
+.panel {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.panel-info {
+    background: var(--green-200);
+}
+
+/* Formulario de consulta */
+/* Formulario principal de consulta */
+.consulta-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.consulta-form label,
+.form-area label {
+    font-weight: 600;
+}
+
+.consulta-form input,
+.consulta-form select,
+.form-area input,
+.form-area select,
+.form-area textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #c7d3c6;
+    font-size: 14px;
+    background: var(--white);
+}
+
+.form-area {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.form-area textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-inline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.checkline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.detalle {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f1f5ef;
+    font-size: 14px;
+}
+
+.resultado {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #eaf3e8;
+    font-weight: 600;
+}
+
+/* Salidas de texto y mensajes */
+.output-box {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed #c8d4c9;
+    background: #f7faf6;
+    white-space: pre-wrap;
+    font-size: 13px;
+    min-height: 120px;
+}
+
+.result-box {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #eef4ef;
+    font-size: 14px;
+    min-height: 48px;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #4c5d55;
+}
+
+/* Listas informativas */
+.lista-info {
+    margin-top: 12px;
+    display: grid;
+    gap: 6px;
+    padding-left: 16px;
+}
+
+/* Resumen estadistico */
+.stats {
+    margin-top: 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.stat-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #d4dfd5;
+}
+
+.stat-card span {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-700);
+}
+
+.stat-note {
+    font-size: 13px;
+    color: #4c5d55;
+}
+
+/* Catalogos de tramites y servicios */
+.catalogo {
+    background: #f9fbf7;
+}
+
+.catalogo-servicios {
+    background: #f0f6f1;
+}
+
+/* Encabezados de seccion */
+.section-head {
+    margin-bottom: 28px;
+}
+
+.section-head h2 {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.kicker {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--green-700);
+    font-size: 12px;
+}
+
+/* Buscador de tramites/servicios */
+.buscador {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.buscador input {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #c7d3c6;
+}
+
+/* Grilla de tarjetas */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+}
+
+/* Tarjetas de tramites y servicios */
+.info-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid #d6e1d7;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.info-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--green-600));
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card-check {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--green-600);
+    border-radius: 4px;
+}
+
+.card-tag {
+    background: #e7f1e6;
+    color: var(--green-700);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.info-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-section {
+    margin-bottom: 12px;
+}
+
+.card-label {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #6b7a70;
+    margin-bottom: 6px;
+}
+
+.info-card ul {
+    padding-left: 18px;
+    display: grid;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.card-meta {
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+    color: #3b4a42;
+}
+
+/* Boton dentro de tarjeta */
+.card-btn {
+    margin-top: 14px;
+    background: var(--green-700);
+    color: var(--white);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-btn:hover {
+    background: var(--green-900);
+}
+
+.empty {
+    padding: 18px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px dashed #c8d4c9;
+}
+
+/* Seccion de tarifas */
+.tarifas {
+    background: var(--sand-100);
+}
+
+.solicitud {
+    background: #f7f5ef;
+}
+
+.formulario {
+    background: #f4f8f1;
+}
+
+.seguimiento {
+    background: #f7f4f0;
+}
+
+.tasas {
+    background: #f2f6f2;
+}
+
+.citas {
+    background: #f6f2ef;
+}
+
+.tarifas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* Tarjeta de tarifa */
+.tarifa-card {
+    background: var(--white);
+    padding: 18px;
+    border-radius: 14px;
+    border-left: 6px solid var(--accent);
+    box-shadow: var(--shadow);
+}
+
+.tarifa-card p {
+    font-weight: 700;
+    color: var(--green-700);
+}
+
+/* Etiquetas para seguimiento */
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.pill {
+    background: #e7f1e6;
+    color: #2e5a3e;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.agenda-slot {
+    padding: 10px;
+    background: var(--white);
+    border: 1px solid #d6e1d7;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.agenda-slot.ocupado {
+    background: #f1e8e6;
+    border-color: #d9b6ae;
+    color: #7a3a2c;
+}
+
+/* Seccion de contacto */
+.contacto {
+    background: #f3f7f4;
+}
+
+/* Seccion de ayuda */
+.ayuda {
+    background: #eef2ea;
+}
+
+.ayuda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* Tarjetas de preguntas frecuentes */
+.ayuda-card {
+    background: var(--white);
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #d3ddd4;
+    box-shadow: var(--shadow);
+}
+
+.ayuda-card h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+/* Pie de pagina */
+.footer {
+    background: var(--green-900);
+    color: var(--white);
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+}
+
+/* Animacion de entrada */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    :root {
+        --nav-offset: 120px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sprl h3 {
+        text-align: center;
+    }
+
+    .hero-overlay {
+        padding: 20px;
+    }
+
+    .hero-panel {
+        max-width: 100%;
+    }
+
+    .menu-dropdown {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-panel {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+    }
+}
