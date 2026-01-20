@@ -552,10 +552,6 @@ section {
     background: #f7f4f0;
 }
 
-.tasas {
-    background: #f2f6f2;
-}
-
 .tarifas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

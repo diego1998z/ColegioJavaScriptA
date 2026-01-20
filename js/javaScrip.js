@@ -286,7 +286,6 @@ const llenarSelectCatalogo = (selectId) => {
 // Unidad 1: funciones y reutilizacion
 const llenarSelects = () => {
     llenarSelectCatalogo("tramite-select");
-    llenarSelectCatalogo("tasas-select");
     llenarSelectCatalogo("for-tramite");
 };
 
@@ -559,79 +558,6 @@ const buscarSeguimiento = () => {
     `;
 };
 
-// Unidad 1: operadores aritmeticos, %, **, bucle for, BigInt e IEEE-754
-const calcularTasas = () => {
-    const select = document.getElementById("tasas-select");
-    const copiasInput = document.getElementById("tasas-copias");
-    const mesesInput = document.getElementById("tasas-meses");
-    const urgenteCheck = document.getElementById("tasas-urgente");
-    const adultoCheck = document.getElementById("tasas-adulto");
-    const resultado = document.getElementById("tasas-resultado");
-    const detalle = document.getElementById("tasas-detalle");
-    const nota = document.getElementById("tasas-nota");
-
-    if (!select || !copiasInput || !mesesInput || !urgenteCheck || !adultoCheck || !resultado || !detalle || !nota) {
-        return;
-    }
-
-    const item = obtenerItemPorClave(select.value);
-    if (!item) {
-        resultado.textContent = "Seleccione un tramite o servicio.";
-        detalle.textContent = "";
-        nota.textContent = "";
-        return;
-    }
-
-    let copias = parseInt(copiasInput.value, 10);
-    if (!Number.isSafeInteger(copias) || copias < 1) {
-        copias = 1;
-    }
-
-    let meses = parseInt(mesesInput.value, 10);
-    if (!Number.isSafeInteger(meses) || meses < 0) {
-        meses = 0;
-    }
-
-    const base = item.costo;
-    const costoCopia = 2;
-    let totalCopias = 0;
-    for (let i = 0; i < copias; i++) {
-        totalCopias += costoCopia;
-    }
-
-    const recargoUrgente = urgenteCheck.checked ? base * 0.15 : 0;
-    const descuento = adultoCheck.checked ? base * 0.1 : 0;
-    const fraccion = meses > 0 ? base * ((1 + 0.02) ** meses - 1) : 0;
-
-    let total = base + totalCopias + recargoUrgente + fraccion - descuento;
-    if (copias % 2 === 0) {
-        total -= 1;
-    }
-    if (total < 0) {
-        total = 0;
-    }
-
-    const codigoPago = 9007199254740993n + BigInt(item.id * 100 + copias);
-
-    resultado.textContent = `Total estimado: ${formatearCosto(total)}`;
-    detalle.textContent = JSON.stringify(
-        {
-            base,
-            copias,
-            totalCopias,
-            recargoUrgente,
-            descuento,
-            fraccion,
-            codigoPago: codigoPago.toString()
-        },
-        null,
-        2
-    );
-
-    const ejemploIeee = 0.1 + 0.2;
-    nota.textContent = `Codigo de pago: ${codigoPago.toString()}. Ejemplo IEEE-754: 0.1 + 0.2 = ${ejemploIeee}`;
-};
-
 // Unidad 1: Number.isSafeInteger (IEEE-754) y boolean
 const esDniValido = (dni) => {
     const limpio = dni.trim();
@@ -754,7 +680,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonSolicitud = document.getElementById("btn-solicitud");
     const botonFormulario = document.getElementById("btn-formulario");
     const botonSeguimiento = document.getElementById("btn-seguimiento");
-    const botonTasas = document.getElementById("btn-tasas");
 
     if (select) {
         select.onchange = () => {
@@ -776,10 +701,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (botonSeguimiento) {
         botonSeguimiento.onclick = buscarSeguimiento;
-    }
-
-    if (botonTasas) {
-        botonTasas.onclick = calcularTasas;
     }
 
     console.log("Tipos de datos demo", tiposDemo);

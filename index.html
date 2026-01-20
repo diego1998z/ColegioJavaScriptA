@@ -43,7 +43,6 @@
             <a href="#solicitud">Mi solicitud</a>
             <a href="#formulario">Registrar tramite</a>
             <a href="#seguimiento">Ver estado</a>
-            <a href="#tasas">Calcular pago</a>
             <a href="#contacto">Contactenos</a>
             <a href="#ayuda">Ayuda</a>
         </div>
@@ -292,46 +291,6 @@
             <div class="panel panel-info">
                 <h3>Ultimos expedientes</h3>
                 <div id="seguimiento-lista" class="pill-list"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seccion tasas: calculadora de costos -->
-    <section class="tasas" id="tasas">
-        <div class="container grid-two">
-            <div class="panel">
-                <h2>Calcular pago</h2>
-                <p>Calcula el costo total segun el tramite y opciones elegidas.</p>
-                <form id="tasas-form" class="form-area" autocomplete="off">
-                    <label for="tasas-select">Tramite o servicio</label>
-                    <select id="tasas-select">
-                        <option value="">Seleccione una opcion</option>
-                    </select>
-
-                    <label for="tasas-copias">Numero de copias</label>
-                    <input id="tasas-copias" type="number" min="1" max="10" value="1">
-
-                    <label for="tasas-meses">Meses de fraccionamiento</label>
-                    <input id="tasas-meses" type="number" min="0" max="6" value="0">
-
-                    <label class="checkline">
-                        <input type="checkbox" id="tasas-urgente">
-                        Atencion urgente (15%)
-                    </label>
-
-                    <label class="checkline">
-                        <input type="checkbox" id="tasas-adulto">
-                        Descuento adulto mayor (10%)
-                    </label>
-
-                    <button type="button" id="btn-tasas" class="btn-primary">Calcular</button>
-                </form>
-                <div id="tasas-resultado" class="result-box"></div>
-                <div id="tasas-nota" class="note"></div>
-            </div>
-            <div class="panel panel-info">
-                <h3>Detalle del calculo</h3>
-                <pre id="tasas-detalle" class="output-box"></pre>
             </div>
         </div>
     </section>
